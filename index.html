@@ -45,7 +45,7 @@
         .pricing-grid {
             display: flex;
             justify-content: center;
-            align-items: stretch;
+            align-items: center; /* Centraliza verticalmente, permitindo alturas diferentes */
             gap: 20px;
         }
 
@@ -54,64 +54,69 @@
             border: 2px solid #000;
             border-radius: 8px;
             width: 350px;
+            height: auto; /* Deixa o conteúdo ditar a altura, corrigindo o overflow */
             display: flex;
             flex-direction: column;
             text-align: center;
             text-decoration: none;
             color: #000;
-            padding-bottom: 20px;
+            padding: 30px 15px 30px 15px;
         }
 
         .card.best-value {
             border: 3px solid rgb(15, 110, 126);
             background-color: rgb(246, 253, 255);
+            padding: 0 15px 30px 15px; /* Topo zerado para o header colar na borda */
         }
 
-        /* Topo do Card */
+        /* Topo do Card (Apenas Best Value tem) */
         .card-header {
-            height: 35px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 600;
-            border-radius: 5px 5px 0 0;
+            background-color: rgb(15, 110, 126); 
+            color: #fff;
+            border-radius: 4px 4px 0 0;
             text-transform: uppercase;
+            margin: 0 -15px 20px -15px; /* Estica até as bordas ignorando o padding */
         }
-        .card.best-value .card-header { background-color: rgb(15, 110, 126); color: #fff; }
 
-        .card-title { font-size: 25px; font-weight: bold; margin: 15px 0; }
+        .card-title { font-size: 22px; font-weight: bold; margin-bottom: 15px; }
         
-        .card-image img { width: 80%; max-width: 240px; }
+        .card-image { flex-grow: 1; display: flex; align-items: center; justify-content: center; }
+        .card-image img { width: 85%; max-width: 240px; }
 
         /* Preço Gigante */
-        .card-price-row { display: flex; justify-content: center; align-items: baseline; gap: 5px; margin: 10px 0; }
+        .card-price-row { display: flex; justify-content: center; align-items: baseline; gap: 5px; margin: 15px 0; }
         .card-price-number { font-family: "Roboto Condensed", sans-serif; font-size: 5em; font-weight: 700; line-height: 1; }
-        .card-price-text { font-size: 1em; font-weight: normal; }
+        .card-price-text { font-size: 1.1em; font-weight: bold; }
 
         /* Benefícios Específicos (6 Potes) */
-        .card-benefits { display: flex; flex-direction: column; gap: 5px; font-size: 15px; margin-bottom: 10px; font-weight: 600; }
-        .card-benefits i { margin-right: 5px; color: #000; }
+        .card-benefits { display: flex; flex-direction: column; gap: 5px; font-size: 14px; margin-bottom: 10px; font-weight: bold; text-align: left; align-items: center; }
+        .card-benefits div { display: flex; align-items: center; width: 120px; }
+        .card-benefits i { margin-right: 8px; color: #000; }
 
         /* Botão de Compra */
-        .btn-buy { margin: 10px auto; width: 260px; max-width: 90%; }
+        .btn-buy { margin: 10px auto; width: 100%; max-width: 260px; }
         .btn-buy img { width: 100%; height: auto; }
 
         /* Frete e Ícones de Cartão */
-        .shipping-text { font-size: 16px; font-weight: bold; margin-bottom: 5px; }
+        .shipping-text { font-size: 14px; font-weight: bold; margin: 5px 0; text-transform: uppercase; }
         .shipping-text.red { color: #e74c3c; }
         .shipping-text.green { color: #2ecc71; }
         
-        .cc-icons img { height: 30px; margin-bottom: 15px; }
+        .cc-icons img { height: 26px; margin-bottom: 15px; }
 
-        /* Totais (Riscado e Real) */
-        .total-block { font-size: 20px; font-weight: bold; line-height: 1.2; }
-        .strike-price { text-decoration: line-through; color: #e74c3c; font-weight: normal; font-size: 18px; }
+        /* Total */
+        .total-block { font-size: 22px; font-family: 'Poppins', sans-serif; font-weight: 400; color: #333; }
 
         /* =========================================
            ORDENAÇÃO DOS CARDS (MAGIA DO FLEXBOX)
            ========================================= */
-        /* Padrão Desktop: 2 Potes, 6 Potes, 3 Potes */
+        /* Padrão Desktop: 2 Potes | 6 Potes | 3 Potes */
         #card-2-bottles { order: 1; }
         #card-6-bottles { order: 2; }
         #card-3-bottles { order: 3; }
@@ -121,7 +126,7 @@
            ========================================= */
         .badges-wrapper { text-align: center; margin: 40px 0; }
         .badges-wrapper img { max-width: 398px; width: 100%; }
-        .badges-wrapper p { font-size: 14px; padding: 0 15px; }
+        .badges-wrapper p { font-size: 13px; padding: 0 15px; margin-top: 15px; }
 
         .guarantee-box {
             background-color: #fff;
@@ -143,9 +148,9 @@
         }
         .guarantee-title-bg h2 { font-size: 24px; margin: 0; color: #000; text-transform: uppercase; }
 
-        .guarantee-text { text-align: left; font-size: 16px; font-weight: 300; max-width: 850px; margin: 0 auto; line-height: 1.6; }
+        .guarantee-text { text-align: left; font-size: 15px; font-weight: 400; max-width: 850px; margin: 0 auto; line-height: 1.6; }
         .guarantee-text b { font-weight: 600; }
-        .signature { font-family: 'Brush Script MT', cursive; font-size: 2.5em; font-weight: 300; }
+        .signature { font-family: 'Brush Script MT', cursive; font-size: 2.5em; font-weight: 300; margin-top: 10px; }
 
         /* =========================================
            POP-UP DE COMPRA
@@ -164,18 +169,18 @@
            ========================================= */
         @media (max-width: 992px) {
             .pricing-grid { flex-direction: column; align-items: center; }
-            .card { width: 100%; max-width: 350px; }
+            .card { width: 100%; max-width: 380px; height: auto; padding-bottom: 30px; }
             
-            /* Nova Ordem Mobile: 6 Potes, 3 Potes, 2 Potes */
-            #card-6-bottles { order: 1; }
-            #card-3-bottles { order: 2; }
+            /* Nova Ordem Mobile: 6 Potes | 3 Potes | 2 Potes */
+            #card-6-bottles { order: 1; margin-bottom: 10px; }
+            #card-3-bottles { order: 2; margin-bottom: 10px; }
             #card-2-bottles { order: 3; }
         }
 
         @media (max-width: 575px) {
-            .offer-headline { font-size: 30px; }
+            .offer-headline { font-size: 28px; }
             .notification-popup { left: 0; right: 0; bottom: 0; margin-left: auto; margin-right: auto; width: 90%; justify-content: center; }
-            .guarantee-title-bg h2 { font-size: 18px; }
+            .guarantee-title-bg h2 { font-size: 16px; }
         }
     </style>
 </head>
@@ -204,7 +209,7 @@
             <div class="pricing-grid">
                 
                 <a href="/b?p=GLP2V1" class="card" id="card-2-bottles">
-                    <div class="card-header"></div> <div class="card-title">2 BOTTLES • 60 DAYS</div>
+                    <div class="card-title">2 BOTTLES • 60 DAYS</div>
                     <div class="card-image"><img src="https://cdn.elasticfunnels.io/132/assets/products/2.png" alt="2 Bottles"></div>
                     
                     <div class="card-price-row">
@@ -217,10 +222,7 @@
                     <div class="shipping-text red">+ SHIPPING</div>
                     <div class="cc-icons"><img src="https://elasticfunnels-cdn.b-cdn.net/111/assets/cards.avif" alt="Credit Cards"></div>
                     
-                    <div class="total-block">
-                        <div class="strike-price">$358</div>
-                        <div>$158</div>
-                    </div>
+                    <div class="total-block">Total: $158</div>
                 </a>
 
                 <a href="/b?p=GLP6V1" class="card best-value" id="card-6-bottles">
@@ -240,17 +242,14 @@
 
                     <div class="btn-buy"><img src="https://cdn.elasticfunnels.io/132/assets/media/Group 781.png" alt="Add to Cart"></div>
                     
-                    <div class="shipping-text green">+ FREE FAST US SHIPPING! <i class="fa fa-truck"></i></div>
+                    <div class="shipping-text green">+ FREE US SHIPPING! <i class="fa fa-truck"></i></div>
                     <div class="cc-icons"><img src="https://elasticfunnels-cdn.b-cdn.net/111/assets/cards.avif" alt="Credit Cards"></div>
                     
-                    <div class="total-block">
-                        <div class="strike-price">$1074</div>
-                        <div>$294</div>
-                    </div>
+                    <div class="total-block">Total: <span class="strike-price">$1074</span> $294</div>
                 </a>
 
                 <a href="/b?p=GLP3V1" class="card" id="card-3-bottles">
-                    <div class="card-header"></div> <div class="card-title">3 BOTTLES • 90 DAYS</div>
+                    <div class="card-title">3 BOTTLES • 90 DAYS</div>
                     <div class="card-image"><img src="https://cdn.elasticfunnels.io/132/assets/products/3.png" alt="3 Bottles"></div>
                     
                     <div class="card-price-row">
@@ -263,10 +262,7 @@
                     <div class="shipping-text red">+ SHIPPING</div>
                     <div class="cc-icons"><img src="https://elasticfunnels-cdn.b-cdn.net/111/assets/cards.avif" alt="Credit Cards"></div>
                     
-                    <div class="total-block">
-                        <div class="strike-price">$537</div>
-                        <div>$207</div>
-                    </div>
+                    <div class="total-block">Total: $207</div>
                 </a>
 
             </div>
