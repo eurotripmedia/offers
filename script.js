@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('card-6-bottles').href = CONFIG.linkPote6;
     document.getElementById('card-3-bottles').href = CONFIG.linkPote3;
 
-    // 2. SISTEMA DE DELAY DA OFERTA (Converte MM:SS para milissegundos)
+    // 2. SISTEMA DE DELAY DA OFERTA E NOTIFICAÇÕES
     function calcularDelayEmMilissegundos(tempoStr) {
         const partes = tempoStr.split(':');
         const minutos = parseInt(partes[0], 10) || 0;
@@ -33,12 +33,18 @@ document.addEventListener("DOMContentLoaded", function() {
         return totalSegundos * 1000;
     }
 
+    // O QUE ESTÁ AQUI DENTRO SÓ ACONTECE APÓS O TEMPO DO DELAY
     setTimeout(() => {
+        // A. Revela a área com os botões e garantia
         document.querySelector('.video-cta-container').style.display = 'block';
+        
+        // B. Inicia os pop-ups de vendas falsas apenas agora!
+        startAllNotifications();
+        
     }, calcularDelayEmMilissegundos(CONFIG.tempoDeDelay));
 
 
-    // 3. SISTEMA DO CONTADOR DE PESSOAS ASSISTINDO
+    // 3. SISTEMA DO CONTADOR DE PESSOAS ASSISTINDO (Roda desde o início)
     function getRandomInt(min, max) { return Math.floor(Math.random() * (max - min + 1) + min); }
     function updateCounter() {
         var currentCount = parseInt(document.getElementById('viewsCount').textContent.replace(/,/g, ''), 10);
@@ -94,14 +100,10 @@ document.addEventListener("DOMContentLoaded", function() {
             }, Math.random() * (30000 - 10000) + 11000); // Próximas demoram entre 11s e 30s
         }
 
-        // Mostra a primeira notificação logo após 2 segundos 
+        // Mostra a primeira notificação 2 segundos APÓS os botões aparecerem
         setTimeout(() => {
             showNotification();
             startRandomInterval();
         }, 2000); 
     }
-
-    setTimeout(() => {
-        startAllNotifications();
-    }, 100);
 });
