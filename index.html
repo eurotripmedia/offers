@@ -11,184 +11,14 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:regular@100,200,300,500,600,700,800,900&display=swap" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" rel="stylesheet">
 
-    <style>
-        /* =========================================
-           BASE E RESET
-           ========================================= */
-        body { font-family: 'Poppins', sans-serif; color: #000; background-color: #f9f9f9; margin: 0; padding: 0; }
-        * { box-sizing: border-box; }
-        .container { max-width: 1080px; margin: 0 auto; padding: 0 15px; }
-
-        /* =========================================
-           VSL E CONTADOR
-           ========================================= */
-        .vsl-wrapper { text-align: center; margin-top: 20px; }
-        
-        #counterContainer { display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; padding: 10px; margin-bottom: 20px; }
-        #counterWrapper { font-weight: bold; font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-        #viewsCount { font-size: 16px; color: #d9534f; font-weight: bold; }
-        .live-icon { width: 18px; height: 18px; }
-        #importantMessage { font-size: 14px; font-weight: bold; color: black; margin-top: 10px; }
-        .loading { font-size: 12px; color: #666; margin-top: 5px; animation: blink 1.5s infinite alternate; }
-        @keyframes blink { from { opacity: 1; } to { opacity: 0.5; } }
-
-        /* =========================================
-           OFERTA / HEADINGS
-           ========================================= */
-        .video-cta-container { display: block; } /* Altere para 'none' se for usar delay no VSL */
-        .offer-headline { text-align: center; font-size: 38px; margin: 40px 0 20px 0; font-weight: 400; }
-        .offer-headline b { color: rgb(7, 87, 100); }
-
-        /* =========================================
-           TABELA DE PREÇOS (CARDS)
-           ========================================= */
-        .pricing-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center; /* Centraliza verticalmente, permitindo alturas diferentes */
-            gap: 20px;
-        }
-
-        .card {
-            background-color: #fff;
-            border: 2px solid #000;
-            border-radius: 8px;
-            width: 350px;
-            height: auto; /* Deixa o conteúdo ditar a altura, corrigindo o overflow */
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            text-decoration: none;
-            color: #000;
-            padding: 30px 15px 30px 15px;
-        }
-
-        .card.best-value {
-            border: 3px solid rgb(15, 110, 126);
-            background-color: rgb(246, 253, 255);
-            padding: 0 15px 30px 15px; /* Topo zerado para o header colar na borda */
-        }
-
-        /* Topo do Card (Apenas Best Value tem) */
-        .card-header {
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: 600;
-            background-color: rgb(15, 110, 126); 
-            color: #fff;
-            border-radius: 4px 4px 0 0;
-            text-transform: uppercase;
-            margin: 0 -15px 20px -15px; /* Estica até as bordas ignorando o padding */
-        }
-
-        .card-title { font-size: 22px; font-weight: bold; margin-bottom: 15px; }
-        
-        .card-image { flex-grow: 1; display: flex; align-items: center; justify-content: center; }
-        .card-image img { width: 85%; max-width: 240px; }
-
-        /* Preço Gigante */
-        .card-price-row { display: flex; justify-content: center; align-items: baseline; gap: 5px; margin: 15px 0; }
-        .card-price-number { font-family: "Roboto Condensed", sans-serif; font-size: 5em; font-weight: 700; line-height: 1; }
-        .card-price-text { font-size: 1.1em; font-weight: bold; }
-
-        /* Benefícios Específicos (6 Potes) */
-        .card-benefits { display: flex; flex-direction: column; gap: 5px; font-size: 14px; margin-bottom: 10px; font-weight: bold; text-align: left; align-items: center; }
-        .card-benefits div { display: flex; align-items: center; width: 120px; }
-        .card-benefits i { margin-right: 8px; color: #000; }
-
-        /* Botão de Compra */
-        .btn-buy { margin: 10px auto; width: 100%; max-width: 260px; }
-        .btn-buy img { width: 100%; height: auto; }
-
-        /* Frete e Ícones de Cartão */
-        .shipping-text { font-size: 14px; font-weight: bold; margin: 5px 0; text-transform: uppercase; }
-        .shipping-text.red { color: #e74c3c; }
-        .shipping-text.green { color: #2ecc71; }
-        
-        .cc-icons img { height: 26px; margin-bottom: 15px; }
-
-        /* Total */
-        .total-block { font-size: 22px; font-family: 'Poppins', sans-serif; font-weight: 400; color: #333; }
-
-        /* =========================================
-           ORDENAÇÃO DOS CARDS (MAGIA DO FLEXBOX)
-           ========================================= */
-        /* Padrão Desktop: 2 Potes | 6 Potes | 3 Potes */
-        #card-2-bottles { order: 1; }
-        #card-6-bottles { order: 2; }
-        #card-3-bottles { order: 3; }
-
-        /* =========================================
-           SEÇÃO DE GARANTIA E BADGES
-           ========================================= */
-        .badges-wrapper { text-align: center; margin: 40px 0; }
-        .badges-wrapper img { max-width: 398px; width: 100%; }
-        .badges-wrapper p { font-size: 13px; padding: 0 15px; margin-top: 15px; }
-
-        .guarantee-box {
-            background-color: #fff;
-            border-radius: 12px;
-            padding: 40px 20px;
-            max-width: 920px;
-            margin: 0 auto 40px auto;
-            text-align: center;
-        }
-        .guarantee-box img { max-width: 130px; margin-bottom: 20px; }
-        
-        .guarantee-title-bg {
-            display: inline-block;
-            background-color: rgba(231,237,247,1);
-            border: 2px solid rgba(117,149,205,0.6);
-            border-radius: 5px;
-            padding: 10px 20px;
-            margin-bottom: 20px;
-        }
-        .guarantee-title-bg h2 { font-size: 24px; margin: 0; color: #000; text-transform: uppercase; }
-
-        .guarantee-text { text-align: left; font-size: 15px; font-weight: 400; max-width: 850px; margin: 0 auto; line-height: 1.6; }
-        .guarantee-text b { font-weight: 600; }
-        .signature { font-family: 'Brush Script MT', cursive; font-size: 2.5em; font-weight: 300; margin-top: 10px; }
-
-        /* =========================================
-           POP-UP DE COMPRA
-           ========================================= */
-        .notification-popup { position: fixed; left: 20px; bottom: 20px; background-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.2); border-radius: 4px; display: flex; align-items: center; padding: 10px; z-index: 1000; opacity: 0; transition: opacity 0.5s, bottom 0.5s; }
-        .notification-popup.show { opacity: 1; bottom: 40px; }
-        .notification-popup.hide { opacity: 0; bottom: 20px; }
-        .notification-content { display: flex; align-items: center; }
-        .profile-image { height: 40px; display: block; }
-        .profile-cropper { overflow: hidden; border-radius: 10%; margin-right: 10px; border: 1px solid gray; }
-        .notification-text { font-size: 14px; margin: 0; }
-        .customer-name { font-weight: bold; }
-
-        /* =========================================
-           RESPONSIVIDADE (MOBILE)
-           ========================================= */
-        @media (max-width: 992px) {
-            .pricing-grid { flex-direction: column; align-items: center; }
-            .card { width: 100%; max-width: 380px; height: auto; padding-bottom: 30px; }
-            
-            /* Nova Ordem Mobile: 6 Potes | 3 Potes | 2 Potes */
-            #card-6-bottles { order: 1; margin-bottom: 10px; }
-            #card-3-bottles { order: 2; margin-bottom: 10px; }
-            #card-2-bottles { order: 3; }
-        }
-
-        @media (max-width: 575px) {
-            .offer-headline { font-size: 28px; }
-            .notification-popup { left: 0; right: 0; bottom: 0; margin-left: auto; margin-right: auto; width: 90%; justify-content: center; }
-            .guarantee-title-bg h2 { font-size: 16px; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
+        
         <div class="vsl-wrapper">
-            <p>Your VSL here</p>
+            <p style="background: #ddd; padding: 100px; text-align: center;">[ CÓDIGO DA VSL AQUI ]</p>
         </div>
 
         <div id="counterContainer">
@@ -208,60 +38,47 @@
 
             <div class="pricing-grid">
                 
-                <a href="/b?p=GLP2V1" class="card" id="card-2-bottles">
+                <a href="#" class="card" id="card-2-bottles">
                     <div class="card-title">2 BOTTLES • 60 DAYS</div>
                     <div class="card-image"><img src="https://cdn.elasticfunnels.io/132/assets/products/2.png" alt="2 Bottles"></div>
-                    
                     <div class="card-price-row">
                         <div class="card-price-number">$79</div>
                         <div class="card-price-text">/ bottle</div>
                     </div>
-
                     <div class="btn-buy"><img src="https://cdn.elasticfunnels.io/132/assets/media/GLProButton2.png" alt="Add to Cart"></div>
-                    
                     <div class="shipping-text red">+ SHIPPING</div>
                     <div class="cc-icons"><img src="https://elasticfunnels-cdn.b-cdn.net/111/assets/cards.avif" alt="Credit Cards"></div>
-                    
                     <div class="total-block">Total: $158</div>
                 </a>
 
-                <a href="/b?p=GLP6V1" class="card best-value" id="card-6-bottles">
+                <a href="#" class="card best-value" id="card-6-bottles">
                     <div class="card-header">BEST VALUE</div>
                     <div class="card-title">6 BOTTLES • 180 DAYS</div>
                     <div class="card-image"><img src="https://cdn.elasticfunnels.io/132/assets/products/6_v2.png" alt="6 Bottles"></div>
-                    
                     <div class="card-price-row">
                         <div class="card-price-number">$49</div>
                         <div class="card-price-text">/ bottle</div>
                     </div>
-
                     <div class="card-benefits">
                         <div><i class="fa fa-check"></i> SAVE $780</div>
                         <div><i class="fa fa-check"></i> FREE GIFTS</div>
                     </div>
-
                     <div class="btn-buy"><img src="https://cdn.elasticfunnels.io/132/assets/media/Group 781.png" alt="Add to Cart"></div>
-                    
                     <div class="shipping-text green">+ FREE US SHIPPING! <i class="fa fa-truck"></i></div>
                     <div class="cc-icons"><img src="https://elasticfunnels-cdn.b-cdn.net/111/assets/cards.avif" alt="Credit Cards"></div>
-                    
                     <div class="total-block">Total: <span class="strike-price">$1074</span> $294</div>
                 </a>
 
-                <a href="/b?p=GLP3V1" class="card" id="card-3-bottles">
+                <a href="#" class="card" id="card-3-bottles">
                     <div class="card-title">3 BOTTLES • 90 DAYS</div>
                     <div class="card-image"><img src="https://cdn.elasticfunnels.io/132/assets/products/3.png" alt="3 Bottles"></div>
-                    
                     <div class="card-price-row">
                         <div class="card-price-number">$69</div>
                         <div class="card-price-text">/ bottle</div>
                     </div>
-
                     <div class="btn-buy"><img src="https://cdn.elasticfunnels.io/132/assets/media/GLProButton2.png" alt="Add to Cart"></div>
-                    
                     <div class="shipping-text red">+ SHIPPING</div>
                     <div class="cc-icons"><img src="https://elasticfunnels-cdn.b-cdn.net/111/assets/cards.avif" alt="Credit Cards"></div>
-                    
                     <div class="total-block">Total: $207</div>
                 </a>
 
@@ -274,13 +91,11 @@
 
             <div class="guarantee-box">
                 <img src="https://storage.googleapis.com/download/storage/v1/b/asper-digital/o/1%2Fmedia%2FE7JAROAGZBRMEOBX.webp?generation=1708000145505835&alt=media" alt="60 Days Guarantee">
-                
                 <div>
                     <div class="guarantee-title-bg">
                         <h2>100% SATISFACTION 60-DAY MONEY BACK GUARANTEE</h2>
                     </div>
                 </div>
-
                 <div class="guarantee-text">
                     <p><b>Your purchase is secured by a 60-day 100% money-back guarantee.</b></p>
                     <p>If GLPro does not meet your expectations, if the results you anticipated fail to materialize, or if you decide you want a refund for absolutely any reason, just drop me an email or call our toll-free line. I promise you'll get back EVERY PENNY you spent within 48 hours.</p>
@@ -306,66 +121,6 @@
         </div>
     </div>
 
-    <script>
-        // SCRIPT 1: Contador Falso (Intacto)
-        function getRandomInt(min, max) { return Math.floor(Math.random() * (max - min + 1) + min); }
-        function updateCounter() {
-            var currentCount = parseInt(document.getElementById('viewsCount').textContent.replace(/,/g, ''), 10);
-            var increment = getRandomInt(1, 5);
-            var nextCount = currentCount + increment;
-            document.getElementById('viewsCount').textContent = nextCount.toLocaleString('en-US');
-            var nextDelay = getRandomInt(1500, 3000);
-            setTimeout(updateCounter, nextDelay);
-        }
-        document.getElementById('viewsCount').textContent = '71,712';
-        updateCounter();
-
-        // SCRIPT 2: Notificações Falsas de Compra (Intacto)
-        const customerNames = ["Olivia", "Emma", "Ava", "Charlotte", "Sophia", "Amelia", "Isabella", "Mia", "Evelyn", "Harper", "Camila", "Gianna", "Abigail", "Luna", "Ella", "Elizabeth", "Sofia", "Emily", "Avery", "Mila", "Liam", "Noah", "Oliver", "Elijah", "William", "James", "Benjamin", "Lucas", "Henry", "Alexander"];
-        const states = [
-            {"name": "Alabama", "abbreviation": "al"}, {"name": "Alaska", "abbreviation": "ak"}, {"name": "Arizona", "abbreviation": "az"}, {"name": "Arkansas", "abbreviation": "ar"}, {"name": "California", "abbreviation": "ca"}, {"name": "Colorado", "abbreviation": "co"}, {"name": "Florida", "abbreviation": "fl"}, {"name": "Georgia", "abbreviation": "ga"}, {"name": "Hawaii", "abbreviation": "hi"}, {"name": "Illinois", "abbreviation": "il"}, {"name": "Texas", "abbreviation": "tx"}, {"name": "New York", "abbreviation": "ny"}
-        ];
-        const productNames = ["2 Bottles of GLPro", "3 Bottles of GLPro", "6 Bottles of GLPro"];
-
-        function startAllNotifications() {
-            const purchaseNotification = document.getElementById('purchase-notification');
-            function updateNotificationContent(name, location, product, image) {
-                purchaseNotification.querySelector('.customer-name').textContent = name;
-                purchaseNotification.querySelector('.customer-location').textContent = location;
-                purchaseNotification.querySelector('.product-name').textContent = product;
-                purchaseNotification.querySelector('.profile-image').src = image;
-            }
-            function showNotification() {
-                const name = customerNames[Math.floor(Math.random() * customerNames.length)];
-                const state = states[Math.floor(Math.random() * states.length)];
-                const product = productNames[Math.floor(Math.random() * productNames.length)];
-                const image = `https://flagcdn.com/h40/us-${state.abbreviation}.png`;
-                
-                updateNotificationContent(name, state.name, product, image);
-                
-                setTimeout(() => {
-                    purchaseNotification.classList.add('show');
-                    setTimeout(() => {
-                        purchaseNotification.classList.remove('show');
-                        purchaseNotification.classList.add('hide');
-                        setTimeout(() => purchaseNotification.classList.remove('hide'), 500);
-                    }, 10000);
-                }, 500);
-            }
-            function startRandomInterval() {
-                setTimeout(() => {
-                    showNotification();
-                    startRandomInterval();
-                }, Math.random() * (30000 - 10000) + 11000);
-            }
-            startRandomInterval();
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(() => {
-                startAllNotifications();
-            }, 100);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
