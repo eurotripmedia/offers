@@ -8,9 +8,9 @@ const CONFIG = {
     tempoDeDelay: "48:55",
 
     // 🔗 Links de Checkout dos Botões
-    linkPote2: "https://seu-checkout.com/produto-2-potes",
-    linkPote6: "https://seu-checkout.com/produto-6-potes",
-    linkPote3: "https://seu-checkout.com/produto-3-potes"
+    linkPote2: "https://pandastyle.life/b?p=GLP2V1&nc=1&preview=1&b=132&fid=358&fnid=2&pfnid=1&pg=9314&template=2b&aff_id=499327&subid={subid}",
+    linkPote6: "https://pandastyle.life/b?p=GLP3V1&nc=1&preview=1&b=132&fid=358&fnid=2&pfnid=1&pg=9314&template=3b&aff_id=499327&subid={subid}",
+    linkPote3: "https://pandastyle.life/b?p=GLP6V1&nc=1&preview=1&b=132&fid=358&fnid=2&pfnid=1&pg=9314&template=6b&aff_id=499327&subid={subid}"
 };
 
 // =====================================================================
